@@ -40,6 +40,12 @@ io.on('connection', (socket) => {
     });
 });
 
+app.use(function (req, res, next) {
+    res.removeHeader("X-Powered-By");
+    res.setHeader('X-Powered-By', 'chatting-app');
+    next();
+});
+
 server.listen(port, () => {
     console.log(`server started at ${port}`)
 });
